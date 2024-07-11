@@ -1,12 +1,27 @@
-class UserImport
-  include ActiveModel::Model
-  include ActiveModel::Attributes
+require 'csv'
 
-  attribute :file, :binary
+class UserImport
+  include ActiveModel::API
+
+  attr_accessor :file, :users
 
   validates :file, presence: true
 
-  def import; end
+  def import
+    users = []
+
+    CSV.foreach(file) do |row|
+      name, password = row
+      header = name == 'name' && password == 'password'
+
+      next if header
+      next if row.empty?
+
+      users << User.create(name:, password:)
+    end
+
+    self.users = users
+  end
 
   def persisted?
     false
