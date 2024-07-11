@@ -1,8 +1,11 @@
 <h2><%= t('.heading') %></h2>
 <%= form_for(user_import) do |form| %>
-    <%= form.file_field :file %>
-    <% user_import.errors.full_messages.each do |error| %>
-        <p><%= error %></p>
-    <% end %>
+    <fieldset>
+        <%= form.label :file %>
+        <%= form.file_field :file %>
+        <% user_import.errors.full_messages.each do |error| %>
+            <p><%= error %></p>
+        <% end %>
+    </fieldset>
     <%= form.submit %>
 <% end %>
