@@ -25,7 +25,7 @@ class UserImportsControllerTest < ActionDispatch::IntegrationTest
 
     assert_response :success
 
-    assert_select 'table tr', 5
+    assert_select 'table tr', 6
   end
 
   test '#create rerenders the form if invalid' do

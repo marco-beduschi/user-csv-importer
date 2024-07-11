@@ -17,7 +17,7 @@ class UserImportTest < ActiveSupport::TestCase
 
     user_import.import
 
-    assert_equal 4, user_import.users.length
+    assert_equal 5, user_import.users.length
     assert_equal 1, user_import.users.select(&:valid?).length
   end
 
