@@ -1,24 +1,27 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Instalation
 
-Things you may want to cover:
+### Requirement
 
-* Ruby version
+- sqlite3
+- ruby 3.2.3
 
-* System dependencies
+```sh
+bundle install
 
-* Configuration
+bin/rails db:create
+bin/rails db:migrate
+```
 
-* Database creation
+## Development
 
-* Database initialization
+```sh
+bin/rails s
+```
 
-* How to run the test suite
+### Testing
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+```sh
+bin/rails test
+```
