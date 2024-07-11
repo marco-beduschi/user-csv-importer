@@ -17,6 +17,17 @@ class UserImportsControllerTest < ActionDispatch::IntegrationTest
     end
   end
 
+  test '#create renders the result of the import if form is valid' do
+    post(
+      '/user_imports',
+      params: { user_import: { file: file_fixture('user_imports/file.csv') } }
+    )
+
+    assert_response :success
+
+    assert_select 'table tr', 5
+  end
+
   test '#create rerenders the form if invalid' do
     post('/user_imports', params: { user_import: { file: nil } })
 

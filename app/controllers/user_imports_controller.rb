@@ -10,6 +10,10 @@ class UserImportsController < ApplicationController
 
     if user_import.valid?
       user_import.import
+
+      render partial: 'user_import', locals: {
+        user_import:
+      }
     else
       render 'new', locals: {
         user_import:

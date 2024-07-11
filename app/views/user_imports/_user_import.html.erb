@@ -1,0 +1,16 @@
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Password</th>
+        <th>Status</th>
+        <th>Errors</th>
+    </tr>
+    <% user_import.users.each do |user| %>
+        <tr>
+            <td><%= user.name %></td>
+            <td><%= user.password %></td>
+            <td><%= user.persisted? ? 'created' : 'error' %></td>
+            <td><%= user.errors.full_messages.join(", ") %></td>
+        </tr>
+    <% end %>
+</table>
