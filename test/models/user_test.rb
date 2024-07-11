@@ -72,4 +72,20 @@ class UserTest < ActiveSupport::TestCase
       scope: %i[activerecord errors models user attributes password]
     )
   end
+
+  test 'valid password should be accepted' do
+    user = User.new
+
+    valid_passwords = %w[
+      Aqpfk1swods
+      QPFJWz1343439
+      PFSHH78KSMa
+    ]
+
+    valid_passwords.each do |password|
+      user.password = password
+
+      assert_empty user.errors[:password]
+    end
+  end
 end
