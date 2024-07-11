@@ -12,13 +12,21 @@ class UserImportTest < ActiveSupport::TestCase
     assert_not UserImport.new.persisted?
   end
 
-  test 'creates users from file' do
+  test 'attempts to users from file' do
     user_import = UserImport.new(file: file_fixture('user_imports/file.csv'))
 
     user_import.import
 
-    assert_equal 5, user_import.users.length
-    assert_equal 1, user_import.users.select(&:valid?).length
+    assert_equal(
+      [
+        ['Muhammad', 'QPFJWz1343439', true],
+        ['Maria Turing', 'AAAfk1swods', false],
+        ['Isabella', 'Abc123', false],
+        ['Axel', '000aaaBBBccccDDD', false],
+        ['Marco', 'ALLUPPERCASE', false]
+      ],
+      user_import.users.map { [_1.name, _1.password, _1.persisted?] }
+    )
   end
 
   test 'does not create users if file is empty' do
@@ -26,7 +34,6 @@ class UserImportTest < ActiveSupport::TestCase
 
     user_import.import
 
-    assert_equal 0, user_import.users.length
     assert_empty user_import.users
   end
 end
