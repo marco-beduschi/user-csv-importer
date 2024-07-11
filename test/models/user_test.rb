@@ -1,6 +1,8 @@
 require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
+  include PasswordStrengthValidatorTestHelper[User]
+
   test 'name is required' do
     user = User.new(name: nil)
 
@@ -34,27 +36,6 @@ class UserTest < ActiveSupport::TestCase
 
     assert_not user.valid?
     assert_includes user.errors.details[:password], { error: :repeating_characters }
-  end
-
-  test 'password without uppercase character should be rejected' do
-    user = User.new(password: 'abcdefghijk1')
-
-    assert_not user.valid?
-    assert_includes user.errors.details[:password], { error: :missing_uppercase_character }
-  end
-
-  test 'password without lowercase character should be rejected' do
-    user = User.new(password: 'ABCDEFGHIJKL1')
-
-    assert_not user.valid?
-    assert_includes user.errors.details[:password], { error: :missing_lowercase_character }
-  end
-
-  test 'password without digit should be rejected' do
-    user = User.new(password: 'abcdefghijklmnop')
-
-    assert_not user.valid?
-    assert_includes user.errors.details[:password], { error: :missing_digit }
   end
 
   test 'valid password should be accepted' do
