@@ -39,3 +39,19 @@ en:
               missing_lowercase_character: must contain at least one lowercase letter
               missing_uppercase_character: must contain at least one uppercase letter
               missing_digit: must contain at least one digit
+
+  user_imports:
+    new:
+      heading: Import Users
+    user_import:
+      table:
+        caption: Import Details
+        header:
+          name: Name
+          password: Password
+          status: Status
+          errors: Errors
+        body:
+          status:
+            created: created
+            error: error

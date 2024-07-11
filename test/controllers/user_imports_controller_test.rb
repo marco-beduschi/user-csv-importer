@@ -6,8 +6,9 @@ class UserImportsControllerTest < ActionDispatch::IntegrationTest
 
     assert_response :success
 
-    form = css_select('form')
+    assert_select 'h2', text: 'Import Users'
 
+    form = css_select('form')
     assert form.attr('action'), '/user_imports'
     assert form.attr('method'), 'post'
 
@@ -26,6 +27,7 @@ class UserImportsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
 
     assert_select 'table tr', 6
+    assert_select 'table caption', text: 'Import Details'
   end
 
   test '#create rerenders the form if invalid' do
@@ -33,8 +35,9 @@ class UserImportsControllerTest < ActionDispatch::IntegrationTest
 
     assert_response :unprocessable_entity
 
-    form = css_select('form')
+    assert_select 'h2', text: 'Import Users'
 
+    form = css_select('form')
     assert form.attr('action'), '/user_imports'
     assert form.attr('method'), 'post'
 
