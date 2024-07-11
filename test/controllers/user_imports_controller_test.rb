@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class UserImportsControllerTest < ActionDispatch::IntegrationTest
-  test 'renders a new user import form' do
+  test '#index renders a new form' do
     get('/user_imports/new')
 
     assert_response :success
