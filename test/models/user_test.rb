@@ -85,6 +85,8 @@ class UserTest < ActiveSupport::TestCase
     valid_passwords.each do |password|
       user.password = password
 
+      user.valid?
+
       assert_empty user.errors[:password]
     end
   end
