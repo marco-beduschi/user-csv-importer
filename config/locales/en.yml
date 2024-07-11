@@ -36,3 +36,4 @@ en:
           attributes:
             password:
               repeating_characters: cannot contain three repeating characters
+              missing_lowercase_character: must contain at least one lowercase letter
