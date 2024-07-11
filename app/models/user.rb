@@ -2,4 +2,11 @@ class User < ApplicationRecord
   validates :name, presence: true
   validates :password, presence: true
   validates :password, length: { in: 10..16 }
+  validates :password, format: {
+    without: /(.)\1{2}/,
+    message: I18n.t(
+      :repeating_characters,
+      scope: %i[activerecord errors models user attributes password]
+    )
+  }
 end
