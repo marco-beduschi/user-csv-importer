@@ -33,44 +33,28 @@ class UserTest < ActiveSupport::TestCase
     user = User.new(password: 'AAAfk1swods')
 
     assert_not user.valid?
-    assert_includes user.errors.details[:password], { error: :invalid, value: 'AAAfk1swods' }
-    assert_includes user.errors[:password], I18n.t(
-      :repeating_characters,
-      scope: %i[activerecord errors models user attributes password]
-    )
+    assert_includes user.errors.details[:password], { error: :repeating_characters }
   end
 
   test 'password without uppercase character should be rejected' do
     user = User.new(password: 'abcdefghijk1')
 
     assert_not user.valid?
-    assert_includes user.errors.details[:password], { error: :invalid, value: 'abcdefghijk1' }
-    assert_includes user.errors[:password], I18n.t(
-      :missing_uppercase_character,
-      scope: %i[activerecord errors models user attributes password]
-    )
+    assert_includes user.errors.details[:password], { error: :missing_uppercase_character }
   end
 
   test 'password without lowercase character should be rejected' do
     user = User.new(password: 'ABCDEFGHIJKL1')
 
     assert_not user.valid?
-    assert_includes user.errors.details[:password], { error: :invalid, value: 'ABCDEFGHIJKL1' }
-    assert_includes user.errors[:password], I18n.t(
-      :missing_lowercase_character,
-      scope: %i[activerecord errors models user attributes password]
-    )
+    assert_includes user.errors.details[:password], { error: :missing_lowercase_character }
   end
 
   test 'password without digit should be rejected' do
     user = User.new(password: 'abcdefghijklmnop')
 
     assert_not user.valid?
-    assert_includes user.errors.details[:password], { error: :invalid, value: 'abcdefghijklmnop' }
-    assert_includes user.errors[:password], I18n.t(
-      :missing_digit,
-      scope: %i[activerecord errors models user attributes password]
-    )
+    assert_includes user.errors.details[:password], { error: :missing_digit }
   end
 
   test 'valid password should be accepted' do
