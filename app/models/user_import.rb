@@ -6,6 +6,8 @@ class UserImport
 
   validates :file, presence: true
 
+  def import; end
+
   def persisted?
     false
   end

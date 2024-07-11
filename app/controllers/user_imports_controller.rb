@@ -20,6 +20,6 @@ class UserImportsController < ApplicationController
   private
 
   def user_import_params
-    params.require(:user_import).permit(:file)
+    params.permit(user_import: [:file])[:user_import]
   end
 end
