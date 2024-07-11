@@ -40,6 +40,17 @@ class UserTest < ActiveSupport::TestCase
     )
   end
 
+  test 'password without uppercase character should be rejected' do
+    user = User.new(password: 'abcdefghijk1')
+
+    assert_not user.valid?
+    assert_includes user.errors.details[:password], { error: :invalid, value: 'abcdefghijk1' }
+    assert_includes user.errors[:password], I18n.t(
+      :missing_uppercase_character,
+      scope: %i[activerecord errors models user attributes password]
+    )
+  end
+
   test 'password without lowercase character should be rejected' do
     user = User.new(password: 'ABCDEFGHIJKL1')
 

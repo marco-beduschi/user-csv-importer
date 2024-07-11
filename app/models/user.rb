@@ -16,4 +16,11 @@ class User < ApplicationRecord
       scope: %i[activerecord errors models user attributes password]
     )
   }
+  validates :password, format: {
+    with: /[A-Z]/,
+    message: I18n.t(
+      :missing_uppercase_character,
+      scope: %i[activerecord errors models user attributes password]
+    )
+  }
 end
