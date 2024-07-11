@@ -38,3 +38,4 @@ en:
               repeating_characters: cannot contain three repeating characters
               missing_lowercase_character: must contain at least one lowercase letter
               missing_uppercase_character: must contain at least one uppercase letter
+              missing_digit: must contain at least one digit

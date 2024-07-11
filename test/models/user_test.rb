@@ -61,4 +61,15 @@ class UserTest < ActiveSupport::TestCase
       scope: %i[activerecord errors models user attributes password]
     )
   end
+
+  test 'password without digit should be rejected' do
+    user = User.new(password: 'abcdefghijklmnop')
+
+    assert_not user.valid?
+    assert_includes user.errors.details[:password], { error: :invalid, value: 'abcdefghijklmnop' }
+    assert_includes user.errors[:password], I18n.t(
+      :missing_digit,
+      scope: %i[activerecord errors models user attributes password]
+    )
+  end
 end

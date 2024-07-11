@@ -23,4 +23,11 @@ class User < ApplicationRecord
       scope: %i[activerecord errors models user attributes password]
     )
   }
+  validates :password, format: {
+    with: /\d/,
+    message: I18n.t(
+      :missing_digit,
+      scope: %i[activerecord errors models user attributes password]
+    )
+  }
 end
