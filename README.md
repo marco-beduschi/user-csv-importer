@@ -24,6 +24,9 @@ bin/rails s
 
 ```sh
 bin/rails test
+
+# e2e
+bin/rails test test/system
 ```
 
 ## Production
