@@ -6,7 +6,10 @@ Rails.application.routes.draw do
   get 'up' => 'rails/health#show', as: :rails_health_check
 
   # Defines the root path route ("/")
-  root 'user_imports#new'
+  root 'user/csv_imports#new'
 
   resources :user_imports, only: %i[new create]
+  namespace :user do
+    resources :csv_imports, only: %i[new create]
+  end
 end

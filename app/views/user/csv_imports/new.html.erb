@@ -1,0 +1,11 @@
+<h2><%= t('.heading') %></h2>
+<%= form_for(csv_import) do |form| %>
+    <fieldset>
+        <%= form.label :file %>
+        <%= form.file_field :file %>
+        <% csv_import.errors.full_messages.each do |error| %>
+            <p><%= error %></p>
+        <% end %>
+    </fieldset>
+    <%= form.submit %>
+<% end %>
