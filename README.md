@@ -23,10 +23,7 @@ bin/rails s
 ### Testing
 
 ```sh
-bin/rails test
-
-# e2e
-bin/rails test:system
+bin/rails test:all
 ```
 
 ## Production
