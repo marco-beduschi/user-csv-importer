@@ -31,4 +31,7 @@ bin/rails test:system
 
 ## Production
 
+Note: It might take 30s for the page to load at first because I'm using
+a free tier on Render that puts the server to 'sleep' while inactive.
+
 https://user-csv-importer.onrender.com/
